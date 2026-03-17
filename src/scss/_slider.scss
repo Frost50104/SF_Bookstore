@@ -1,0 +1,194 @@
+@use 'variables' as *;
+
+// ─── Hero wrapper ────────────────────────────────────────────────────────────
+.hero {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px $pad-outer;
+}
+
+// ─── Slider column (позиционирование promo-блоков — относительно него) ───────
+.hero__slider-col {
+  position: relative;
+  overflow: visible;
+}
+
+// ─── Slider ──────────────────────────────────────────────────────────────────
+.slider {
+  position: relative;
+  height: 460px;
+  border-radius: 0;
+  overflow: hidden;
+  background: $c-hero-bg;
+
+  &__track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__slide {
+    flex: 0 0 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 40px 56px;
+    overflow: hidden;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    max-width: 340px;
+  }
+
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $c-navy;
+    opacity: 0.7;
+    margin-bottom: 12px;
+  }
+
+  &__tagline {
+    font-size: 52px;
+    font-weight: 800;
+    font-style: italic;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
+  &__big-num {
+    font-size: 180px;
+    font-weight: 900;
+    line-height: 0.88;
+    color: #fff;
+    text-shadow: -10px 12px 0 $c-shadow60;
+    letter-spacing: -4px;
+
+    .slider__suffix {
+      font-size: 80px;
+      vertical-align: 0.1em;
+      letter-spacing: 0;
+    }
+  }
+
+  &__deco {
+    position: absolute;
+    right: 0; top: 0;
+    width: 55%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__circle {
+    position: absolute;
+    border-radius: 50%;
+
+    &--1 { width: 300px; height: 300px; right: -60px; top: -80px;  background: rgba(255,255,255,0.18); }
+    &--2 { width: 200px; height: 200px; right: 80px;  bottom: -60px; background: rgba(255,255,255,0.12); }
+    &--3 { width: 110px; height: 110px; right: 55px;  top: 40px;   background: rgba(255,255,255,0.10); }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  &__dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba($c-navy, 0.2);
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+
+    &--active {
+      background: $c-promo-purple;
+      transform: scale(1.4);
+    }
+
+    &:hover:not(&--active) {
+      background: rgba($c-navy, 0.4);
+    }
+  }
+}
+
+// ─── Promo blocks — абсолютные, относительно hero__slider-col ────────────────
+.promo {
+  position: absolute;
+  width: 120px;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 10px;
+  color: #fff;
+  text-align: center;
+  transition: opacity 0.2s;
+  z-index: 5;
+
+  &:hover { opacity: 0.88; }
+
+  &__text {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  // Верхняя: заезжает на слайдер половиной ширины, чуть ниже верхней грани
+  &--purple {
+    background: $c-promo-purple;
+    right: -60px;    // половина ширины = 60px заезжает на слайдер
+    top: 40px;
+    height: 170px;
+  }
+
+  // Нижняя: чуть правее слайдера, чуть выше нижней грани
+  &--pink {
+    background: $c-promo-pink;
+    right: -148px;   // 120px ширина + 28px зазор от правого края слайдера
+    bottom: 50px;
+    height: 160px;
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: $bp-md) {
+  .hero { padding: 16px 24px; }
+  .slider { height: 240px; }
+  .slider__big-num { font-size: 100px; }
+  .slider__tagline { font-size: 32px; }
+  .slider__big-num .slider__suffix { font-size: 48px; }
+
+  .promo {
+    position: static;
+    width: auto;
+    flex: 1;
+    height: 80px;
+  }
+  .hero__slider-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .promo--purple,
+  .promo--pink {
+    position: static;
+  }
+  // на мобиле возвращаем их в строку
+  .hero__slider-col {
+    .promo { position: static !important; }
+  }
+}

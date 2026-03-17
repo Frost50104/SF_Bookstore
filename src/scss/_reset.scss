@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: $font;
+  font-size: 14px;
+  color: $c-navy;
+  background: $c-page-bg;
+  -webkit-font-smoothing: antialiased;
+  min-width: 320px;
+}
+
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+img { display: block; max-width: 100%; }

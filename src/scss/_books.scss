@@ -1,0 +1,175 @@
+@use 'variables' as *;
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-left: -56px;             // overlap sidebar by ~28px (padding 28px + 28px extra)
+
+  @media (max-width: $bp-md) {
+    margin-left: 0;
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.book-card {
+  display: flex;
+  background: transparent;
+  min-height: 200px;
+
+  &__cover {
+    flex-shrink: 0;
+    width: 155px;
+    aspect-ratio: 2 / 3;
+    align-self: flex-start;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: $c-sidebar-bg;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+    }
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 18px;
+  }
+
+  &__authors {
+    font-size: 12px;
+    color: $c-author;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    font-size: 17px;
+    font-weight: 700;
+    color: $c-navy;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  &__reviews {
+    font-size: 11px;
+    color: $c-review;
+  }
+
+  &__description {
+    font-size: 12px;
+    color: $c-desc;
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: $c-navy;
+    margin-bottom: 14px;
+  }
+}
+
+// ─── Stars ────────────────────────────────────────────────────────────────────
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 13px;
+  line-height: 1;
+
+  &--full, &--half { color: $c-star; }
+  &--empty          { color: $c-star-empty; }
+}
+
+// ─── Buy button ───────────────────────────────────────────────────────────────
+.btn-buy {
+  width: 160px;
+  height: 40px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border: 1px solid $c-btn;
+  border-radius: 4px;
+  background: $c-card-bg;
+  color: $c-btn;
+  transition: background 0.18s, color 0.18s;
+
+  &:hover {
+    background: $c-btn;
+    color: #fff;
+  }
+
+  &--active {
+    border-color: #8f98a3;
+    color: $c-review;
+
+    &:hover {
+      background: $c-sidebar-bg;
+      color: $c-navy;
+      border-color: $c-navy;
+    }
+  }
+}
+
+// ─── Load more ────────────────────────────────────────────────────────────────
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-load-more {
+  width: 180px;
+  height: 44px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid $c-btn;
+  border-radius: 4px;
+  background: transparent;
+  color: $c-btn;
+  transition: background 0.18s, color 0.18s;
+
+  &:hover {
+    background: $c-btn;
+    color: #fff;
+  }
+
+  &.hidden { display: none; }
+}

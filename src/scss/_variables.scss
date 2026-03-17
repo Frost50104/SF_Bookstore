@@ -1,0 +1,31 @@
+// ─── Colors ────────────────────────────────────────────────────────────────
+$c-navy:          #1c2a39;   // logo, titles, price, active text
+$c-slate:         #5c6a79;   // nav inactive, sidebar inactive
+$c-author:        #636c77;   // author text
+$c-desc:          #677481;   // description text
+$c-review:        #aeb4bc;   // review count, empty stars
+$c-btn:           #4c3db2;   // button border & text (deep indigo)
+$c-shadow60:      #534fd2;   // "60%" offset shadow
+$c-bullet:        #756ad3;   // active category dot
+$c-promo-purple:  #9e98dc;   // top promo block
+$c-promo-pink:    #ff8fe6;   // bottom promo block
+$c-hero-bg:       #ffe0e2;   // hero slider background
+$c-sidebar-bg:    #efeef6;   // sidebar background
+$c-page-bg:       #ffffff;
+$c-card-bg:       #ffffff;
+$c-star:          #f2c94c;   // filled star
+$c-star-empty:    #aeb4bc;   // empty star
+$c-header-border: #d4d7d9;
+
+// ─── Typography ────────────────────────────────────────────────────────────
+$font: 'Inter', sans-serif;
+
+// ─── Layout ─────────────────────────────────────────────────────────────────
+$header-h:    64px;
+$pad-outer:   160px;         // left/right page margin
+$sidebar-w:   356px;         // 160px margin + 196px sidebar content
+$pad-right:   80px;          // right page margin
+
+// ─── Breakpoints ────────────────────────────────────────────────────────────
+$bp-md: 1024px;
+$bp-sm:  768px;
